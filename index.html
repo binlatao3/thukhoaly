@@ -11,20 +11,12 @@
             transform: scale(1.7);
         }
     </style>
-    <script  type="text/javascript">
-      function init() {
-      var myAudio = document.getElementById("audio");
-      myAudio.addEventListener('ended', loopAudio, true);
-      }
-      function loopAudio() {
-      var myAudio = document.getElementById("audio");
-      myAudio.play();
-      }
-    </script>
   </head>
-  <body onload="init();">
+  <body>
     <div style="visibility:hidden">
-      <audio id="audio" src="mp3/coaynoi.mp3" controls autoplay></audio>   
+      <audio id="musicplayer" autoplay loop playsinline>
+        <source src="mp3/coaynoi.mp3" />
+      </audio>      
     </div>
     <script src="js/three.min.js"></script>
     <script src="js/MeshSurfaceSampler.js"></script>
@@ -34,5 +26,18 @@
     <script src="js/gsap.min.js"></script>
     <script src="js/script.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script>
+      let videoElem = document.querySelector("#musicplayer")
+      let playAttempt = setInterval(() => {
+        videoElem
+          .play()
+          .then(() => {
+            clearInterval(playAttempt);
+          })
+          .catch((error) => {
+            console.log("Unable to play the mp3, User has not allow audio or video.");
+          });
+      }, 2000);
+    </script>
   </body>
 </html>
