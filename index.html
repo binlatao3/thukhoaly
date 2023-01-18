@@ -14,7 +14,7 @@
     <script  type="text/javascript">
       function init() {
       var myAudio = document.getElementById("audio");
-      myAudio.addEventListener('ended', loopAudio, false);
+      myAudio.addEventListener('ended', loopAudio, true);
       }
       function loopAudio() {
       var myAudio = document.getElementById("audio");
@@ -24,7 +24,7 @@
   </head>
   <body onload="init();">
     <div style="visibility:hidden">
-      <audio id="audio" src="mp3/coaynoi.mp3" controls></audio>   
+      <audio id="audio" src="mp3/coaynoi.mp3" controls autoplay></audio>   
     </div>
     <script src="js/three.min.js"></script>
     <script src="js/MeshSurfaceSampler.js"></script>
