@@ -27,42 +27,17 @@
     <script src="js/script.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script>
-      // let videoElem = document.querySelector("#musicplayer")
-      // let playAttempt = setInterval(() => {
-      //   videoElem
-      //     .play()
-      //     .then(() => {
-      //       clearInterval(playAttempt);
-      //     })
-      //     .catch((error) => {
-      //       console.log("Unable to play the mp3, User has not allow audio or video.");
-      //     });
-      // }, 2000);
-      window.addEventListener('load', () => {
-        let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', 'mp3/coaynoi.mp3');
-        xhr.responseType = 'arraybuffer';
-        xhr.addEventListener('load', () => {
-          let playsound = (audioBuffer) => {
-            let source = audioCtx.createBufferSource();
-            source.buffer = audioBuffer;
-            source.connect(audioCtx.destination);
-            source.loop = false;
-            source.start();
-
-            setTimeout(function () {
-              let t = document.createElement('p');
-              t.appendChild(document.createTextNode((new Date()).toLocaleString() + ': Sound played'));
-              document.querySelector('.output').appendChild(t);
-              playsound(audioBuffer);
-            }, 1000 + Math.random()*2500);
-          };
-
-          audioCtx.decodeAudioData(xhr.response).then(playsound);
-        });
-        xhr.send();
-      });
+      let videoElem = document.querySelector("#musicplayer")
+      let playAttempt = setInterval(() => {
+        videoElem
+          .play()
+          .then(() => {
+            clearInterval(playAttempt);
+          })
+          .catch((error) => {
+            console.log("Unable to play the mp3, User has not allow audio or video.");
+          });
+      }, 2000);
     </script>
   </body>
 </html>
